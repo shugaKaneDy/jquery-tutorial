@@ -30,6 +30,20 @@
 
   <input type="text" name="firstname" id="name">
   <button id="btn">Click</button>
+  <hr>
+  <br>
+  <br>
+  
+  <button id="add_list">Add List</button>
+  <button id="hide">Hide</button>
+  <button id="remove">Remove</button>
+  <button id="show">Show</button>
+
+  <ul id="lists">
+    <li>Initial list 1</li>
+    <li id="list_remove">Initial list 2</li>
+    <li class="list_class">Initial list 3</li>
+  </ul>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -92,9 +106,37 @@
         }
       });
 
+      $('#add_list').on('click', function() {
+
+        /* $('#lists').append(`
+          <li>List Item</li>
+        `); */
+        /* $('#lists').prepend(`
+          <li>List Item</li>
+        `); */
+
+        // header1.before("hello");
+
+        header1.hide();
+      });
+
+      $('#hide').on('click', function() {
+
+        header1.hide();
+      });
+      $('#remove').on('click', function() {
+
+        // header1.remove();
+
+        $('li').remove("#list_remove, .list_class");
+      });
+      $('#show').on('click', function() {
+
+        header1.show();
+      });
 
 
-
+      // document ready
     })
   </script>
 </body>
