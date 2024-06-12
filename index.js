@@ -6,6 +6,10 @@ $(document).ready(function() {
   var cart = $('.cart');
   var deleteList = $('#deleteList');
 
+  var fname = $('#fname');
+  var lname = $('#lname');
+  var form = $('#form');
+
   add_btn.on('click', function() {
 
     if(recipe_textbox.val().length > 0) {
@@ -34,6 +38,57 @@ $(document).ready(function() {
     $('#check-list > ul > li').not(".unq").css({"color" : "red", "font-size" : "32px"});
   });
 
+  $('#loadBtn').on('click', function() {
+    // $('#main-container').load('sample.txt #data');
+
+    $.get("https://jsonplaceholder.typicode.com/users", function(data) {
+      data.forEach(element => {
+        // console.log(element.name);
+
+        $('#main-container').append(`<p>${element.name}</p>`);
+      });
+    });
+  });
+
+  form.on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      type: 'POST',
+      url: '/jquery-tutorial/process.php',
+      data: {firstname: fname.val(), lastname: lname.val()},
+      success: function(response) {
+        // console.log(JSON.parse(response));
+
+        var data = JSON.parse(response);
+
+        $('#main-container').append(`<p>${data.firstname} ${data.lastname}</p>`);
+
+        Swal.fire({
+          title: data.lastname,
+          text: data.firstname,
+          icon: "success"
+        });
+      }
+    });
+
+    // console.log("This was submitted");
+  })
+
   
+  /* fname.on('focus', function() {
+    var lg = $(this).val().length;
+
+    console.log("This was selected");
+  }); */
+
+  /* fname.on('keyup', function() {
+    var lg = $(this).val().length;
+
+    console.log(lg);
+  }); */
+  
+
+
 
 });
