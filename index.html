@@ -8,7 +8,7 @@
 <body>
 
 
-  <h1 id="header1">PinoyFreeCoder</h1>
+  <h1 id="header1" style="display: none;">PinoyFreeCoder</h1>
   <h1 id="header2">Hello World</h1>
 
   <ul>
@@ -18,7 +18,8 @@
     <li class="list">List4</li>
     <li class="list">List5</li>
   </ul>
-  <button id="btn">Click me</button>
+  <button id="btn-hide">Hide me</button>
+  <button id="btn-show">Show me</button>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -31,9 +32,22 @@
 
     $(document).ready(function(){
 
-      $('#btn').click(function(){
-        header1.hide();
+      $('#btn-hide').click(function(){
+
+        // header1.hide();
+        // header1.fadeOut();
+        // header1.fadeToggle();
+        header1.slideToggle();
       });
+
+      $('#btn-show').click(function(){
+
+        // header1.show(3000);
+        // header1.fadeIn(3000);
+        header1.slideUp();
+      });
+
+
 
     })
   </script>
