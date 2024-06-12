@@ -8,7 +8,7 @@
 <body>
 
 
-  <h1 id="header1" style="display: none;">PinoyFreeCoder</h1>
+  <h1 id="header1" >PinoyFreeCoder</h1>
   <h1 id="header2">Hello World</h1>
 
   <ul>
@@ -37,14 +37,21 @@
         // header1.hide();
         // header1.fadeOut();
         // header1.fadeToggle();
-        header1.slideToggle();
+        // header1.slideToggle();
+        
+        header1.animate({
+          fontSize: '52px',
+          color: 'red',
+          letterSpacing: '32px'
+        });
+
       });
 
       $('#btn-show').click(function(){
 
         // header1.show(3000);
         // header1.fadeIn(3000);
-        header1.slideUp();
+        // header1.slideUp();
       });
 
 
