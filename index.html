@@ -3,153 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jquery</title>
+  <title>Document</title>
 </head>
 <body>
 
+  <input type="text" id="recipe_textbox">
+  <button id="add_btn">Add Recipe</button>
 
-  <h1 id="header1" >PinoyFreeCoder</h1>
-  <select id="select1">
-    <option value="option1">option1</option>
-    <option value="option2">option2</option>
-    <option value="option3">option3</option>
-  </select>
-  <select id="select2">
-  </select>
-  <!-- <h1 id="header2">Hello World</h1>
+  <div id="main-div">
+    <div class="cart">
 
-  <ul>
-    <li class="list">List1</li>
-    <li class="list">List2</li>
-    <li class="list">List3</li>
-    <li class="list">List4</li>
-    <li class="list">List5</li>
-  </ul>
-  <button id="btn-hide">Hide me</button>
-  <button id="btn-show">Show me</button> -->
-
-  <input type="text" name="firstname" id="name">
-  <button id="btn">Click</button>
-  <hr>
-  <br>
-  <br>
-  
-  <button id="add_list">Add List</button>
-  <button id="hide">Hide</button>
-  <button id="remove">Remove</button>
-  <button id="show">Show</button>
-
-  <ul id="lists">
-    <li>Initial list 1</li>
-    <li id="list_remove">Initial list 2</li>
-    <li class="list_class">Initial list 3</li>
-  </ul>
+    </div>
+  </div>
 
   <hr>
   <br>
   <br>
-  <button id="css_btn">CSS Button</button>
+  <button id="deleteList">Modify List</button>
+  <div id="check-list">
+    <ul>
+      <li>List Item 1</li>
+      <li>List Item 2</li>
+      <li>List Item 3</li>
+      <li class="unq">List Item 4</li>
+      <li>List Item 5</li>
+      <li>List Item 6</li>
+      <li>List Item 7</li>
+      <li>List Item 8</li>
+    </ul>
+  </div>
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script>
-    const header1 = $("#header1");
-    
-    // const header2 = $("#header2");
-    // const list = $(".list");
-
-    // console.log(list);
-
-    $(document).ready(function(){
-
-      // $('#btn-hide').click(function(){
-
-        // header1.hide();
-        // header1.fadeOut();
-        // header1.fadeToggle();
-        // header1.slideToggle();
-        
-      //   header1.animate({
-      //     fontSize: '52px',
-      //     color: 'red',
-      //     letterSpacing: '32px'
-      //   });
-
-      // });
-
-      // $('#btn-show').click(function(){
-
-        // header1.show(3000);
-        // header1.fadeIn(3000);
-        // header1.slideUp();
-      // });
-
-      var input = $('#name');
-
-      $('#btn').on('click', function() {
-        // header1.text('Hello from PinoyFreeCoder');
-        // header1.html('<i>Hello from PinoyFreeCoder</i>');
-        // console.log(header1.text());
-
-        // var h1 = header1.text();
-        // var select1 = $('#select1');
-        // $('#name').val(h1);
-
-        // console.log(select1.val());
-        
-       
-      });
-      $('#select1').on('change', function() {
-        var selectValue = this.value;
-
-        if(selectValue === "option1") {
-          $('#select2').html(`
-            <option value="option4">option4</option>
-            <option value="option5">option5</option>
-            <option value="option6">option6</option>
-          `);
-        }
-      });
-
-      $('#add_list').on('click', function() {
-
-        /* $('#lists').append(`
-          <li>List Item</li>
-        `); */
-        /* $('#lists').prepend(`
-          <li>List Item</li>
-        `); */
-
-        // header1.before("hello");
-
-        header1.hide();
-      });
-
-      $('#hide').on('click', function() {
-
-        header1.hide();
-      });
-      $('#remove').on('click', function() {
-
-        // header1.remove();
-
-        // $('li').remove("#list_remove, .list_class");
-        $('#lists').empty();
-      });
-      $('#show').on('click', function() {
-
-        header1.show();
-      });
-
-      $('#css_btn').on('click', function() {
-
-        $('#header1').css("color", "red").animate({fontSize: "52px", letterSpacing: "32px"});
-        // $('#header1').css("font-size", "52px");
-      });
-
-
-      // document ready
-    })
-  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="index.js"></script>
 </body>
 </html>
