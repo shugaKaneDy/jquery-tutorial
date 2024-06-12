@@ -9,7 +9,14 @@
 
 
   <h1 id="header1" >PinoyFreeCoder</h1>
-  <h1 id="header2">Hello World</h1>
+  <select id="select1">
+    <option value="option1">option1</option>
+    <option value="option2">option2</option>
+    <option value="option3">option3</option>
+  </select>
+  <select id="select2">
+  </select>
+  <!-- <h1 id="header2">Hello World</h1>
 
   <ul>
     <li class="list">List1</li>
@@ -19,12 +26,16 @@
     <li class="list">List5</li>
   </ul>
   <button id="btn-hide">Hide me</button>
-  <button id="btn-show">Show me</button>
+  <button id="btn-show">Show me</button> -->
+
+  <input type="text" name="firstname" id="name">
+  <button id="btn">Click</button>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
     const header1 = $("#header1");
+    
     // const header2 = $("#header2");
     // const list = $(".list");
 
@@ -32,27 +43,55 @@
 
     $(document).ready(function(){
 
-      $('#btn-hide').click(function(){
+      // $('#btn-hide').click(function(){
 
         // header1.hide();
         // header1.fadeOut();
         // header1.fadeToggle();
         // header1.slideToggle();
         
-        header1.animate({
-          fontSize: '52px',
-          color: 'red',
-          letterSpacing: '32px'
-        });
+      //   header1.animate({
+      //     fontSize: '52px',
+      //     color: 'red',
+      //     letterSpacing: '32px'
+      //   });
 
-      });
+      // });
 
-      $('#btn-show').click(function(){
+      // $('#btn-show').click(function(){
 
         // header1.show(3000);
         // header1.fadeIn(3000);
         // header1.slideUp();
+      // });
+
+      var input = $('#name');
+
+      $('#btn').on('click', function() {
+        // header1.text('Hello from PinoyFreeCoder');
+        // header1.html('<i>Hello from PinoyFreeCoder</i>');
+        // console.log(header1.text());
+
+        // var h1 = header1.text();
+        // var select1 = $('#select1');
+        // $('#name').val(h1);
+
+        // console.log(select1.val());
+        
+       
       });
+      $('#select1').on('change', function() {
+        var selectValue = this.value;
+
+        if(selectValue === "option1") {
+          $('#select2').html(`
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+          `);
+        }
+      });
+
 
 
 
