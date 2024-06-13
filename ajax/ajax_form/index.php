@@ -10,6 +10,9 @@
     .error {
       border: 1px solid red;
     }
+    #spinner {
+      display: none;
+    }
   </style>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -32,6 +35,10 @@
     </form>
   </div>
 
+  <div id="spinner" class="spinner-border" role="status">
+    <span class="sr-only"></span>
+  </div>
+
   <div id="result">
     <p>The total volume is: <span id="volume"></span></p>
   </div>
@@ -41,6 +48,16 @@
     $(document).ready(function() {
       var resultDiv = $('#result');
       var volume = $('#volume');
+
+      function showSpinner() {
+        var spinner = $('#spinner');
+        spinner.show();
+      }
+
+      function hideSpinner() {
+        var spinner = $('#spinner');
+        spinner.hide();
+      }
 
       function displayErrors(errors) {
         var inputs = $('input');
@@ -73,6 +90,8 @@
         clearResult();
         clearErrors();
 
+        showSpinner();
+
         var form = $('#measurement-form');
         var action = form.attr('action');
         var formData = form.serialize(); // Serialize the form data
@@ -82,6 +101,7 @@
           type: 'POST',
           data: formData,
           success: function(response) {
+            hideSpinner();
             var json;
             try {
               json = JSON.parse(response);
