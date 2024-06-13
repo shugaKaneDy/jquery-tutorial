@@ -59,6 +59,16 @@
         spinner.hide();
       }
 
+      function disableSubmitButton() {
+        $('#ajax-submit').prop('disabled', true);
+        $('#ajax-submit').val('Loading...');
+      }
+
+      function enableSubmitButton() {
+        $('#ajax-submit').prop('disabled', false);
+        $('#ajax-submit').val('Ajax Submit');
+      }
+
       function displayErrors(errors) {
         var inputs = $('input');
         inputs.each(function() {
@@ -89,8 +99,9 @@
       function calculateMeasurements() {
         clearResult();
         clearErrors();
-
         showSpinner();
+        disableSubmitButton();
+        
 
         var form = $('#measurement-form');
         var action = form.attr('action');
@@ -102,6 +113,7 @@
           data: formData,
           success: function(response) {
             hideSpinner();
+            enableSubmitButton();
             var json;
             try {
               json = JSON.parse(response);
