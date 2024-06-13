@@ -20,14 +20,16 @@
 
   <!--  <button id="ajax-button" type="button">Update content with Ajax</button> -->
 
-  <div id="entry">
+  <!-- <div id="entry">
     Zip code: <input id="zipcode" type="text" name="zipcode"/>
     <button id="ajax-button">Submit</button>
+  </div> -->
+
+  <div id="main">
+    This is the original text when the page first loads.
   </div>
 
-  <div id="location">
-
-  </div>
+  <button id="ajax-button">Submit</button>
 
   <script>
     // function replaceText() {
@@ -51,10 +53,10 @@
     //   xhr.send();
     // }
 
-    var button = document.getElementById("ajax-button");
+    // var button = document.getElementById("ajax-button");
     // button.addEventListener("click", replaceText);
 
-    var api = 'http://maps.googleapis.com/maps/api/geocode/json';
+    /* var api = 'http://maps.googleapis.com/maps/api/geocode/json';
 
     function findLocation() {
       var zipcode = document.getElementById("zipcode");
@@ -90,7 +92,54 @@
       target.innerHTML = address;
     }
 
-    button.addEventListener("click", findLocation);
+    button.addEventListener("click", findLocation); */
+
+
+   /*  $.ajax({
+      type: "GET",
+      url: "script.php",
+      async: true,
+      data: {},
+      dataType: "text",
+      success: function(data) {
+        $("#main").html(data);
+      },
+      error: function(jqXHR, textStatus, error) {
+        
+      }
+    });
+
+    $.get({
+      url: "scipt.php",
+      dataType: "text",
+      success: function(data) {
+        $("#main").html(data);
+      }
+    }); */
+
+    function replaceText() {
+      var target = document.getElementById("main");
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'new_content.php', true);
+
+      xhr.onreadystatechange = function() {
+
+        console.log('readyState: ' + xhr.readyState);
+        
+        if(xhr.readyState == 2) {
+          target.innerHTML = "Loading...";
+        }
+
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          target.innerHTML = xhr.responseText;
+        }
+      }
+
+      xhr.send();
+    }
+
+    var button = document.getElementById("ajax-button");
+    button.addEventListener("click", replaceText);
 
 
 
