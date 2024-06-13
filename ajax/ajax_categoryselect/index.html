@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #subcategory-select {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  
+  <form id="form">
+    <p>Which Category are you interested in?</p>
+    <select id="category-select">
+      <option disabled selected>Please Select</option>
+      <option value="1">Furniture</option>
+      <option value="2">Lighting</option>
+      <option value="3">Accessories</option>
+    </select>
+    <select id="subcategory-select">
+    </select>
+  </form>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+
+    function updateSubCategories() {
+      var cat_select = $('#category-select');
+      var subcat_select = $('#subcategory-select');
+
+      var cat_id = cat_select.val(); // jQuery method to get the selected value
+
+      var url = 'subcategories.php?category_id=' + cat_id;
+
+      $.ajax({
+        url: url,
+        method: 'GET',
+        success: function(response) {
+          subcat_select.html(response); // jQuery method to set the inner HTML
+          subcat_select.css('display', 'inline');
+        },
+        error: function(xhr, status, error) {
+          console.error('Error: ' + error);
+        }
+      });
+    }
+
+    var cat_select = $('#category-select');
+    cat_select.on('change', updateSubCategories);
+
+  </script>
+</body>
+</html>
