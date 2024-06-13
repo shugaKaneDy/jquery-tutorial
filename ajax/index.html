@@ -4,38 +4,96 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    #entry {
+      margin: 2em 1em;
+    }
+    #location {
+      margin: 1em;
+    }
+  </style>
 </head>
 <body>
-  <div id="main">
+  <!-- <div id="main">
     This is original text when the page first loads.
+  </div> -->
+
+  <!--  <button id="ajax-button" type="button">Update content with Ajax</button> -->
+
+  <div id="entry">
+    Zip code: <input id="zipcode" type="text" name="zipcode"/>
+    <button id="ajax-button">Submit</button>
   </div>
 
-  <button id="ajax-button" type="button">Update content with Ajax</button>
+  <div id="location">
+
+  </div>
 
   <script>
-    function replaceText() {
-      var target = document.getElementById("main");
+    // function replaceText() {
+    //   var target = document.getElementById("main");
+    //   var xhr = new XMLHttpRequest();
+    //   xhr.open('GET', 'new_content.txt', true);
+
+    //   xhr.onreadystatechange = function() {
+
+    //     console.log('readyState: ' + xhr.readyState);
+        
+    //     if(xhr.readyState == 2) {
+    //       target.innerHTML = "Loading...";
+    //     }
+
+    //     if (xhr.readyState == 4 && xhr.status == 200) {
+    //       target.innerHTML = xhr.responseText;
+    //     }
+    //   }
+
+    //   xhr.send();
+    // }
+
+    var button = document.getElementById("ajax-button");
+    // button.addEventListener("click", replaceText);
+
+    var api = 'http://maps.googleapis.com/maps/api/geocode/json';
+
+    function findLocation() {
+      var zipcode = document.getElementById("zipcode");
+      var url = api + '?address=' + zipcode.value;
+
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'new_content.txt', true);
+      xhr.open('GET', url, true);
 
       xhr.onreadystatechange = function() {
 
         console.log('readyState: ' + xhr.readyState);
-        
-        if(xhr.readyState == 2) {
-          target.innerHTML = "Loading...";
-        }
 
+        if(xhr.readyState < 4) {
+          showLoading();
+        }
         if (xhr.readyState == 4 && xhr.status == 200) {
-          target.innerHTML = xhr.responseText;
+          outputLocation(xhr.responseText);
         }
       }
 
       xhr.send();
     }
 
-    var button = document.getElementById("ajax-button");
-    button.addEventListener("click", replaceText);
+    function showLoading() {
+      var target = document.getElementById("location");
+      target.innerHTML = 'Loading...'
+    }
+    function outputLocation(data) {
+      var target = document.getElementById("location");
+      var json = JSON.parse(data);
+
+      var address = json.results[0].formatted_address;
+      target.innerHTML = address;
+    }
+
+    button.addEventListener("click", findLocation);
+
+
+
   </script>
 </body>
 </html>
