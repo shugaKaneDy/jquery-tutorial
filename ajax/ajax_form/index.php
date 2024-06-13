@@ -31,7 +31,7 @@
       Height: <input type="text" name="height" /><br />
       <br />
       <input id="html-submit" type="submit" value="Submit" />
-      <input id="ajax-submit" type="button" value="Ajax Submit" />
+      <!-- <input id="ajax-submit" type="button" value="Ajax Submit" /> -->
     </form>
   </div>
 
@@ -48,6 +48,8 @@
     $(document).ready(function() {
       var resultDiv = $('#result');
       var volume = $('#volume');
+      var button = $("#html-submit");
+      var original_button = button.val();
 
       function showSpinner() {
         var spinner = $('#spinner');
@@ -60,13 +62,17 @@
       }
 
       function disableSubmitButton() {
-        $('#ajax-submit').prop('disabled', true);
-        $('#ajax-submit').val('Loading...');
+        /* $('#ajax-submit').prop('disabled', true);
+        $('#ajax-submit').val('Loading...'); */
+        button.prop('disabled', true);
+        button.val('Loading...');
       }
 
       function enableSubmitButton() {
-        $('#ajax-submit').prop('disabled', false);
-        $('#ajax-submit').val('Ajax Submit');
+        /* $('#ajax-submit').prop('disabled', false);
+        $('#ajax-submit').val('Ajax Submit'); */
+        button.prop('disabled', false);
+        button.val(original_button);
       }
 
       function displayErrors(errors) {
@@ -136,7 +142,11 @@
         });
       }
 
-      $('#ajax-submit').on('click', calculateMeasurements);
+      // $('#ajax-submit').on('click', calculateMeasurements);
+      button.on('click', function(event) {
+        event.preventDefault();
+        calculateMeasurements();
+      });
     });
   </script>
 </body>
