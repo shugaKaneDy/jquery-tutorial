@@ -38,6 +38,7 @@
 
   var container = $('#blog-posts');
   var load_more = $('#load-more');
+  var request_in_progress = false; // prevents from continuously requesting
 
   function showSpinner() {
     var spinner = $('#spinner');
@@ -77,13 +78,14 @@
     load_more.attr('data-page', page);
   }
 
+  // scroll reacts adds 3 content
   function scrollReaction() {
     /* var content_height = container.offsetHeight;
     var current_y = window.innerHeight + window.pageYOffset;
     console.log(current_y + '/' + content_height); */
     var content_height = container.height();
     var current_y = $(window).height() + $(window).scrollTop();
-    console.log(current_y + '/' + content_height);
+    // console.log(current_y + '/' + content_height);
 
     if (current_y > content_height) {
       loadMore();
@@ -91,6 +93,10 @@
   }
 
   function loadMore() {
+    
+    // prevents from continuously requesting
+    if(request_in_progress) {return;}
+    request_in_progress = true;
 
     showSpinner();
     hideLoadMore();
@@ -108,6 +114,7 @@
         // append results to end of blog posts
         appendToDiv(container, response);
         showLoadMore();
+        request_in_progress = false; // prevents from continuously requesting
       },
       error: function(xhr, status, error) {
         console.error('Error: ' + error);
@@ -136,6 +143,7 @@
   // load_more.addEventListener("click", loadMore);
   load_more.on('click', loadMore);
 
+  // Scroll effect
   window.onscroll = function () {
     scrollReaction();
   }
